@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const root=path.resolve(import.meta.dirname,'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+let page=read('web/index.html').replace('/* INLINE_STYLE */',read('web/style.css')).replace('/* INLINE_SCRIPT */',read('web/app.js'));
+const seed=JSON.parse(read('web/seed.json'));
+page=page.replace('/* INLINE_SEED */ null',JSON.stringify(seed).replaceAll('<','\\u003c'));
+const script=read('worker/index.js').replace("/* INJECT_PAGE */ ''",JSON.stringify(page)).replace('/* INJECT_SEED */ null',JSON.stringify(seed));
+fs.mkdirSync(path.join(root,'dist/server'),{recursive:true});fs.mkdirSync(path.join(root,'dist/.openai'),{recursive:true});fs.mkdirSync(path.join(root,'public'),{recursive:true});
+fs.writeFileSync(path.join(root,'dist/server/index.js'),script);
+fs.copyFileSync(path.join(root,'.openai/hosting.json'),path.join(root,'dist/.openai/hosting.json'));
+fs.writeFileSync(path.join(root,'public/index.html'),page);fs.writeFileSync(path.join(root,'public/.nojekyll'),'');
+console.log('Built GitHub Pages site and Worker.');

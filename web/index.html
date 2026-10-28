@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f5f7f3">
+  <meta name="description" content="Общий план команды: задачи, сроки, ответственные и результаты работы над кейсом Т-Банка.">
+  <title>Роудмап команды · Кейс Т-Банка</title>
+  <style>/* INLINE_STYLE */</style>
+</head>
+<body>
+<main>
+  <header class="masthead"><a href="./" class="brand" aria-label="Роудмап команды"><span class="brand-symbol" aria-hidden="true">↗</span><span>КОМАНДНЫЙ ПЛАН</span></a><span class="access-pill" id="access-mode">Просмотр</span></header>
+  <section class="hero">
+    <div><p class="eyebrow">КЕЙС Т-БАНКА · ОСЕНЬ 2026</p><h1 id="project-title">Роудмап команды</h1><p class="subtitle">От первых кейсов — к готовому решению.</p><div class="meta-line"><span id="period-label">28 октября — 5 ноября</span><span class="meta-dot" aria-hidden="true">·</span><span>Саша1 · Саша2 · Юля</span></div></div>
+    <div class="hero-actions"><button class="button primary" id="share-button">Поделиться</button><button class="button" id="settings-button" hidden>Настройки плана</button></div>
+  </section>
+  <section class="milestones" aria-label="Контрольные даты"><div><span class="small-label">ГОТОВАЯ ВЕРСИЯ</span><strong id="early-deadline">2 ноября</strong></div><div><span class="small-label">ФИНАЛЬНЫЙ ОРИЕНТИР</span><strong id="final-deadline">5 ноября</strong></div><p id="project-note"></p></section>
+  <div class="workbar"><div class="section-label"><h2>План работы</h2><span class="count" id="progress-label">0 из 10 готово</span></div><button class="button compact" id="add-button" hidden>＋ Добавить задачу</button></div>
+  <div class="connection" id="connection" role="status" aria-live="polite">Загружаем общую версию…</div>
+  <div class="workspace">
+    <section class="timeline-panel" aria-label="Сроки задач"><div class="timeline-axis" id="timeline-axis"></div><div id="task-rows"></div><div class="timeline-legend"><span><i class="legend-mark"></i>Основной план</span><span><i class="legend-mark reserve"></i>Резерв после 2 ноября</span><span><i class="legend-mark diamond"></i>Контрольная точка</span></div></section>
+    <aside class="detail-panel" id="task-detail" aria-label="Подробности задачи"><div class="detail-top"><span class="small-label" id="detail-number"></span><span class="status-badge" id="detail-status"></span></div><h2 id="detail-title"></h2><p class="detail-meta" id="detail-dates"></p><div class="owner-block"><span class="small-label">ОТВЕТСТВЕННЫЙ</span><strong id="detail-owner"></strong></div><dl class="detail-list"><dt>Что делаем</dt><dd id="detail-actions"></dd><dt>Результат этапа</dt><dd id="detail-result"></dd><dt>Что нужно до старта</dt><dd id="detail-depends"></dd><dt>Заметки команды</dt><dd id="detail-notes"></dd></dl><button class="button primary full" id="edit-button" hidden>Редактировать задачу</button><p class="readonly-hint" id="readonly-hint">Для изменений откройте ссылку редактора, которой поделился организатор.</p></aside>
+  </div>
+  <footer><span id="updated-label">Общая версия команды</span><button class="text-button" id="reload-button">Обновить данные</button></footer>
+</main>
+<dialog id="task-dialog" aria-labelledby="task-dialog-title"><form id="task-form"><div class="dialog-head"><div><p class="eyebrow">ОБЩИЙ ПЛАН</p><h2 id="task-dialog-title">Редактировать задачу</h2></div><button type="button" class="close-button" id="task-close" aria-label="Закрыть редактор">×</button></div><div class="form-content">
+  <label>Название задачи<input name="name" maxlength="100" required></label>
+  <div class="form-grid"><label>Ответственный<input name="owner" maxlength="160" placeholder="Например, Саша1 · Юля"></label><label>Статус<select name="status"><option value="todo">Не начато</option><option value="doing">В работе</option><option value="done">Готово</option><option value="blocked">Нужна помощь</option></select></label></div>
+  <div class="form-grid"><label>Начало<input type="date" name="start" required></label><label>Окончание<input type="date" name="end" required></label></div>
+  <label>Что делаем<textarea name="actions" rows="3" maxlength="5000"></textarea></label><label>Результат этапа<textarea name="result" rows="2" maxlength="3000"></textarea></label><label>Что нужно до старта<textarea name="depends" rows="2" maxlength="2000"></textarea></label><label>Заметки команды<textarea name="notes" rows="3" maxlength="5000" placeholder="Ссылки на материалы, договорённости, вопросы…"></textarea></label>
+  <div class="checks"><label><input type="checkbox" name="optional">Резервный этап</label><label><input type="checkbox" name="milestone">Контрольная точка</label></div>
+  <label>Ваше имя для подписи<input name="actor" maxlength="80" required list="team-members" placeholder="Как вас подписать"><datalist id="team-members"><option value="Саша1"><option value="Саша2"><option value="Юля"></datalist></label>
+  <div class="form-error" id="task-error" role="alert" hidden></div><div class="conflict-actions" id="conflict-actions" hidden><button type="button" class="button" id="download-draft">Скачать мои правки</button><button type="button" class="button" id="load-current">Загрузить версию команды</button></div>
+  </div><div class="dialog-footer"><span>Сохранённые изменения видит вся команда.</span><button class="button primary" id="task-save" type="submit">Сохранить для всех</button></div></form></dialog>
+<dialog id="settings-dialog" aria-labelledby="settings-title"><form id="settings-form"><div class="dialog-head"><h2 id="settings-title">Настройки плана</h2><button type="button" class="close-button" id="settings-close" aria-label="Закрыть настройки">×</button></div><div class="form-content"><label>Название<input name="title" maxlength="100" required></label><div class="form-grid"><label>Готовая версия<input type="date" name="earlyDeadline" required></label><label>Финальный ориентир<input type="date" name="deadline" required></label></div><label>Пояснение к срокам<textarea name="note" rows="4" maxlength="2000"></textarea></label><label>Ваше имя для подписи<input name="actor" maxlength="80" required list="team-members"></label><div class="form-error" id="settings-error" role="alert" hidden></div></div><div class="dialog-footer"><button class="button primary" type="submit" id="settings-save">Сохранить для всех</button></div></form></dialog>
+<dialog id="share-dialog" aria-labelledby="share-title"><div class="dialog-head"><h2 id="share-title">Поделиться с командой</h2><button class="close-button" id="share-close" aria-label="Закрыть ссылки">×</button></div><div class="form-content"><label>Ссылка для просмотра<input id="view-link" readonly></label><button class="button" id="copy-view">Скопировать ссылку</button><div id="editor-share" hidden><hr><label>Ссылка для редактирования<input id="edit-link" readonly></label><p class="helper">По этой ссылке можно менять общий план. Отправьте её только участникам команды.</p><button class="button primary" id="copy-edit">Скопировать ссылку редактора</button></div><p id="copy-feedback" role="status"></p></div></dialog>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<script>const INITIAL_DOCUMENT = /* INLINE_SEED */ null;</script>
+<script>/* INLINE_SCRIPT */</script>
+</body></html>

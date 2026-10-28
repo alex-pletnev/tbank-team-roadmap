@@ -1,0 +1,7 @@
+dist/
+site.tar.gz
+.preview-state.json
+.env
+.env.*
+!.env.example
+public/
